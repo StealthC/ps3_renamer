@@ -1,12 +1,16 @@
 def sanitize_filename!(filename)
    # Strip out the non-ascii character
    filename.gsub!(/[^0-9A-Za-z.\-]/, '_')
+   # remove duplicate underscores
    filename.gsub!(/_+/, '_')
    filename
 end
 
+# Reads a PARAM.SFO and get all Keys and values to a Hash
+# more details can be found on
+# http://www.psdevwiki.com/ps3/PARAM.SFO
 def read_params(param_path)
-  #http://www.psdevwiki.com/ps3/PARAM.SFO
+
   params = nil
   file = File.open(param_path, "rb") { |file|
     params = {}
@@ -31,8 +35,10 @@ def read_params(param_path)
   }
   params
 end
+
+# Searches from a path for PS3 game folders and apply the renaming pattern.
 def rename_ps3_folders(root_path = Dir.pwd, rename_theme)
-  raise "Diretório não existe" unless Dir.exist? root_path
+  raise "Directory does not exist" unless Dir.exist? root_path
   Dir.foreach(root_path) {|filename|
     if Dir.exist? file_path = File.join(root_path, filename) and ![".", ".."].include? filename
       if File.exist? param_path = File.join(file_path, "PS3_GAME", "PARAM.SFO")
@@ -41,9 +47,9 @@ def rename_ps3_folders(root_path = Dir.pwd, rename_theme)
             renamed_dir = sanitize_filename!((rename_theme % params).strip.upcase)
             newname = File.join(root_path, renamed_dir)
             if (file_path != newname)
-              raise "Diretório #{newname} já existe" if Dir.exist? newname
+              raise "Directory #{newname} already exists" if Dir.exist? newname
               File.rename file_path, newname
-              puts "Renomeado: #{newname}"
+              puts "Renamed: #{newname}"
             end
           end
       end
