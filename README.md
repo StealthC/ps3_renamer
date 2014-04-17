@@ -5,7 +5,7 @@ Searches through a specified folder for PS3 games and renames the folder to a un
 
 
 USAGE: 
-  `ruby ps3_renamer folder rename_pattern`
+  `ruby ps3_renamer.rb folder rename_pattern`
   
   **folder**    - Directory that contains PS3 GAMES, if not especified, the scripts runs in current directory
   
