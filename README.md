@@ -12,6 +12,7 @@ USAGE:
   **rename_pattern**   - The renaming pattern, it must be in "Ruby Style", the default is `"%{TITLE} - %{TITLE_ID}"` where:
 
   TITLE     = Title of the game, example: "Dead or Alive 5"
+  
   TITLE_ID  = ID of disc, example: "BLUS1234"
 
   OBS: Spaces and special characters are escaped with "_"
@@ -28,4 +29,5 @@ USAGE:
   **rename_pattern**   - The renaming pattern, it must be in "Ruby Style", the default is `"%{TITLE} - %{TITLE_ID}"` where:
 
   TITLE     = Title of the game, example: "Dead or Alive 5"
+  
   TITLE_ID  = ID of disc, example: "BLUS1234"
